@@ -31,6 +31,27 @@ router.get('/dashboard', authenticateMiddleware, (req, res) => {
     })
 })
 
+router.post('/add-listing', (req, res) => {
+    
+    const username = req.session.username
+    const userId = req.session.userId
+    const title = req.body.titleText
+    const body = req.body.bodyText
+    const category = req.body.categoryText
+
+    const post = models.Product.build({
+        title: title,
+        body: body,
+        category: category,
+        user_id: userId
+    })
+    post.save().then(() => {
+        console.log(username)
+        res.redirect('/blog/dashboard')
+    })
+
+})
+
 
 
 

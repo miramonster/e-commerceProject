@@ -3,10 +3,18 @@
     </head>
     
     <body>
-        {{#userInfo}}
-            <p>Hello {{username}}</p>
-        {{/userInfo}}
-
+        <h2>Add a Listing<h2>
+        <form method="POST" action="/user/add-listing">
+            <input type="text" placeholder="Title" name="titleText" />
+            <input type="text" placeholder="Description" name="bodyText" />
+            <select name="categoryText">
+                <option value="">Select Category</option>
+                <option value="TV">TV</option>
+                <option value="Computer">Computer</option>
+                <option value="Appliances">Appliances</option>
+            </select>
+            <button>Post</button>
+        </form>
         
     </body>
 </html>
