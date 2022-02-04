@@ -3,8 +3,10 @@ const mustacheExpress = require('mustache-express')
 const session = require('express-session')
 const models = require('./models')
 const app = express() 
-const pgp = require('pg-promise')()
 const bcrypt = require('bcrypt')
+
+const userRoutes = require('./routes/user')
+
 const SALT_ROUND = 10
 
 // setting up Express to use Mustache Express as template pages 
@@ -22,6 +24,7 @@ app.use(session({
 
 app.use(express.urlencoded())
 app.use(express.static('static'))
+app.use('/user', userRoutes)
 
 app.get('/', (req, res) => {
     res.render('index')
@@ -53,7 +56,7 @@ app.post('/login', async (req,res) => {
                     req.session.userId = user.id
                     req.session.username = user.username
                 
-                    res.redirect('/blog/dashboard')
+                    res.redirect('/user/dashboard')
                 }
             } else {
                 res.render('/', {errorMessage: 'Incorrect Password'})
@@ -63,6 +66,7 @@ app.post('/login', async (req,res) => {
         res.render('/', {errorMessage: 'Username invalid'})
     }
 })
+
 
 
 app.post('/register', async (req, res) => {
