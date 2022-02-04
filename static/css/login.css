@@ -1,0 +1,45 @@
+body {
+    background-color: rgb(226, 226, 226);
+
+}
+
+.container {
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
+}
+
+.col {
+    width: 400px;
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(104, 104, 104);
+    color: white;
+    padding: 30px;
+    align-items: center;
+}
+
+.inputIndex {
+    display:flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.inputIndex input{
+    margin-top: 5px;
+    height: 30px;
+    border-radius: 2px;
+    border:none;
+    border-bottom: rgb(37, 139, 255) 2px solid;
+}
+.inputIndex button{
+    margin-top: 5px;
+    border-radius: 2px;
+    height: 35px;
+    border:none;
+    color: white;
+    background-color: rgb(37, 139, 255);
+}
