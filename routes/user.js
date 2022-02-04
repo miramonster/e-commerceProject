@@ -19,40 +19,55 @@ function authenticateMiddleware(req, res, next) {
 
 
 router.get('/dashboard', authenticateMiddleware, (req, res) => {
-    const username = req.session.username
-    models.User.findOne({
+    const userId = req.session.userId
+    models.Product.findAll({
         where: {
-            username: username
-        }
+            user_id: userId
+        },
+        include: [
+            {
+                model: models.User,
+                as: "user"
+            }
+        ]
 
     })
-    .then((user) => {
-        res.render('user-dashboard',{userInfo:user})
+    .then((listing) => {
+        res.render('user-dashboard',{userListings:listing})
     })
 })
 
 router.post('/add-listing', (req, res) => {
     
-    const username = req.session.username
     const userId = req.session.userId
     const title = req.body.titleText
-    const body = req.body.bodyText
+    const description = req.body.descriptionText
+    const price = req.body.priceText
     const category = req.body.categoryText
 
-    const post = models.Product.build({
+    const product = models.Product.build({
         title: title,
-        body: body,
+        description: description,
+        price: price,
         category: category,
         user_id: userId
     })
-    post.save().then(() => {
-        console.log(username)
-        res.redirect('/blog/dashboard')
+    product.save().then(() => {
+        res.redirect('/user/dashboard')
     })
 
 })
 
-
+router.post('/listing/delete/:listingId', (req, res) => {
+    const listingId = req.params.listingId
+    models.Product.destroy({
+        where: {
+            id : listingId
+        }
+    }).then(() => {
+        res.redirect('/user/dashboard')
+    })
+})
 
 
 

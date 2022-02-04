@@ -3,18 +3,31 @@
     </head>
     
     <body>
+        <h1>User Dashboard<h1>
         <h2>Add a Listing<h2>
         <form method="POST" action="/user/add-listing">
             <input type="text" placeholder="Title" name="titleText" />
-            <input type="text" placeholder="Description" name="bodyText" />
+            <input type="text" placeholder="Description" name="descriptionText" />
+            <input type="text" placeholder="Price" name="priceText" />
             <select name="categoryText">
                 <option value="">Select Category</option>
                 <option value="TV">TV</option>
                 <option value="Computer">Computer</option>
                 <option value="Appliances">Appliances</option>
             </select>
-            <button>Post</button>
+            <button>Add Listing</button>
         </form>
+        <h2>Your Listings<h2>
+        {{#userListings}}
+            <p>{{title}}</p>
+            <p>Description: {{description}}</p>
+            <p>${{price}}</p>
+            <p>Category: {{category}}</p>
+            <form method="POST" action="/user/listing/delete/{{id}}">
+                 <button>Delete</button>
+            </form>
+        {{/userListings}}
+
         
     </body>
 </html>
