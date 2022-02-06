@@ -10,6 +10,10 @@ const productRoutes = require('./routes/products')
 
 const SALT_ROUND = 10
 
+const PORT = process.env.PORT || 8080
+
+
+
 // setting up Express to use Mustache Express as template pages 
 app.engine('mustache', mustacheExpress())
 // the pages are located in views directory
@@ -108,6 +112,6 @@ app.post('/register', async (req, res) => {
 })
 
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Server is running...')
 })
