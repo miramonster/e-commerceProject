@@ -24,14 +24,17 @@
             <button>Add Listing</button>
         </form>
         <h2>Your Listings<h2>
+
         {{#userListings}}
             <p>{{title}}</p>
             <p>Description: {{description}}</p>
             <p>${{price}}</p>
             <p>Category: {{category}}</p>
+
             <form method="POST" action="/user/listing/delete/{{id}}">
                  <button>Delete</button>
             </form>
+            
         {{/userListings}}
 
 
