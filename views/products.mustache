@@ -7,13 +7,27 @@
         <a href="/user/dashboard">Profile</a>
         <br />
         <a href="/login">Login</a>
-        
+
         <p>
             Don't Have an Account?
             <a href="/register">Register Now</a>
         </p>
 
-        <a href="/products/category">Products</a>
+                
+
+        {{#products}}
+
+            <li>
+                <h3>{{title}}<h3>
+                {{description}}
+                {{price}}
+            
+                <a href=/products/detail/{{id}}>Details</a>
+                
+            </li>
+
+        {{/products}}
+        </ul>
 
         
     </body>

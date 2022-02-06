@@ -3,7 +3,13 @@
     </head>
     
     <body>
+        <a href="/">Home<a>
+        <a href="/user/dashboard">Profile</a>
+        <br />
+        <a href="/login">Login</a>
+        
         <h1>User Dashboard<h1>
+        <a href="/user/dashboard/reviews"> Your Reviews </a>
         <h2>Add a Listing<h2>
         <form method="POST" action="/user/add-listing">
             <input type="text" placeholder="Title" name="titleText" />
@@ -27,6 +33,8 @@
                  <button>Delete</button>
             </form>
         {{/userListings}}
+
+
 
         
     </body>

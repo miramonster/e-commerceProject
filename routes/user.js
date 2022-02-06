@@ -37,6 +37,25 @@ router.get('/dashboard', authenticateMiddleware, (req, res) => {
     })
 })
 
+router.get('/dashboard/reviews', authenticateMiddleware, (req, res) => {
+    const userId = req.session.userId
+    models.Review.findAll({
+        where: {
+            user_id: userId
+        },
+        include: [
+            {
+                model: models.User,
+                as: "reviewer"
+            }
+        ]
+
+    })
+    .then((review) => {
+        res.render('reviews',{userReviews:review})
+    })
+})
+
 router.post('/add-listing', (req, res) => {
     
     const userId = req.session.userId

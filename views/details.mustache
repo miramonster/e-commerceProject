@@ -1,0 +1,39 @@
+<html>
+    <head>
+    </head>
+    
+    <body>
+            <a href="/">Home<a>
+            <a href="/user/dashboard">Profile</a>
+            <br />
+            <a href="/login">Login</a>
+
+
+            <li>
+                <h3>{{title}}<h3>
+                {{description}}
+                {{price}}
+
+                <br />
+
+                <h4>Write a Review</h4>
+                <form method="POST" action="/products/detail/{{id}}/review">
+                    <input type="text" name="titleText" />
+                    <input type="text" name="bodyText" />
+                    <button>Submit</button>
+                </form>
+                <h4>Reviews<h4>
+                {{#reviews}}
+                    <p>{{reviewer.username}}<p>
+                    <p>{{title}}<p>
+                    <p>{{body}}<p>
+                {{/reviews}}
+
+
+            </li>
+
+        </ul>
+
+        
+    </body>
+</html>

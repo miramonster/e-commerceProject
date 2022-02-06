@@ -6,6 +6,7 @@ const app = express()
 const bcrypt = require('bcrypt')
 
 const userRoutes = require('./routes/user')
+const productRoutes = require('./routes/products')
 
 const SALT_ROUND = 10
 
@@ -25,6 +26,7 @@ app.use(session({
 app.use(express.urlencoded())
 app.use(express.static('static'))
 app.use('/user', userRoutes)
+app.use('/products', productRoutes)
 
 app.get('/', (req, res) => {
     res.render('index')
