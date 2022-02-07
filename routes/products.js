@@ -1,8 +1,15 @@
 const express = require('express')
+const { Sequelize } = require('../models')
 const router = express.Router()
 const models = require('../models')
 
+function calculateAvgRating(array) {
 
+    const totalRating = array.reduce((average, array) => average + array.rating, 0)
+    const avgRating = totalRating/array.length
+    return avgRating
+
+}
 
 router.get('/category', (req, res) => {
     res.render('category')
@@ -13,16 +20,26 @@ router.get('/view-all', (req, res) => {
         include: [
             {
                 model: models.User,
-                as: "user"
+                as: "user",
+            },
+            {
+                model: models.Review,
+                as: "reviews",
             }
         ]
     })
     .then((listings) => {
-        res.render('products', {products:listings})
+        const editedListings = listings.map((product) => {
+            const reviews = product.dataValues.reviews
+            product.dataValues.avg_rating = calculateAvgRating(reviews).toFixed(2)
+            return product.dataValues
+        })
+
+        res.render('products', {products: editedListings})
     })
 })
 
-
+// Fetching 1 Product, displaying the details
 router.get('/detail/:productId', (req, res) => {
     const productId = parseInt(req.params.productId)
     console.log(productId)
@@ -33,17 +50,20 @@ router.get('/detail/:productId', (req, res) => {
                 as: "reviews",
                 include:[{
                     model:models.User,
-                    as: "reviewer"
+                    as: "reviewer",
                 }]
             },
             {
                 model: models.User,
-                as: "user"
+                as: "user",
             }
         ]
     })
     .then((listing) => {
-        console.log(listing.dataValues)
+        // Calculating Average Rating
+        const reviews = listing.dataValues.reviews
+        listing.dataValues.avgRating = calculateAvgRating(reviews).toFixed(2)
+        listing.dataValues.reviewAmt = reviews.length
         res.render('details', listing.dataValues)
     })
     
@@ -56,12 +76,14 @@ router.post('/detail/:productId/review', (req, res) => {
     const body = req.body.bodyText
     const userId = req.session.userId
     const productId = parseInt(req.params.productId)
+    const rating = parseInt(req.body.reviewValue)
 
     const review = models.Review.build({
         title: title,
         body: body,
         user_id: userId,
-        product_id: productId
+        product_id: productId,
+        rating: rating
     })
     
     review.save().then(() => {

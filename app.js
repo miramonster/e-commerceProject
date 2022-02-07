@@ -44,6 +44,14 @@ app.get('/register', (req, res) => {
     res.render('register')
 })
 
+function calculateAvgRating(array) {
+
+    const totalRating = array.reduce((average, array) => average + array.rating, 0)
+    const avgRating = totalRating/array.length
+    return avgRating
+
+}
+
 app.post('/login', async (req,res) => {
     const username = req.body.usernameText
     const password = req.body.passwordText
@@ -112,6 +120,6 @@ app.post('/register', async (req, res) => {
 })
 
 
-app.listen(PORT, () => {
+app.listen(3000, () => {
     console.log('Server is running...')
 })

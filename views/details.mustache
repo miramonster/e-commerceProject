@@ -11,22 +11,31 @@
 
             <li>
                 <h3>{{title}}<h3>
-                {{description}}
-                {{price}}
+                <p>{{description}}</p>
+                <p>{{price}}</p>
+                <p>{{avgRating}}/5 ({{reviewAmt}})</p>
 
                 <br />
 
                 <h4>Write a Review</h4>
                 <form method="POST" action="/products/detail/{{id}}/review">
+                    <select name="reviewValue">
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                     </select>
                     <input type="text" name="titleText" />
                     <input type="text" name="bodyText" />
                     <button>Submit</button>
                 </form>
                 <h4>Reviews<h4>
                 {{#reviews}}
-                    <p>{{reviewer.username}}<p>
-                    <p>{{title}}<p>
-                    <p>{{body}}<p>
+                    <p>{{reviewer.username}}</p>
+                    <p>{{title}}</p>
+                    <p>{{body}}</p>
+                    <p>Rating: {{rating}}/5</p>
                 {{/reviews}}
 
 
