@@ -15,6 +15,36 @@ router.get('/category', (req, res) => {
     res.render('category')
 })
 
+router.get('/category/:category', (req, res) => {
+    const category = req.params.category
+    models.Product.findAll({
+        include: [
+            {
+                model: models.User,
+                as: "user",
+            },
+            {
+                model: models.Review,
+                as: "reviews",
+            }
+        ],
+        where: [
+            {
+                category: category
+            }
+        ]
+    })
+    .then((listings) => {
+        const editedListings = listings.map((product) => {
+            const reviews = product.dataValues.reviews
+            product.dataValues.avg_rating = calculateAvgRating(reviews).toFixed(2)
+            return product.dataValues
+        })
+
+        res.render('products', {products: editedListings})
+    })
+})
+
 router.get('/view-all', (req, res) => {
     models.Product.findAll({
         include: [

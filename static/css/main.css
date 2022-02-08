@@ -1,4 +1,17 @@
-/* css for the footer */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #030e12;
+    overflow-x: hidden;
+    background-color: #C6C1C0;
+  }
+
+
 
 /* All: Footer */
 .footer {
@@ -7,7 +20,6 @@
     font-size: 10px;
     padding: 48px;
     margin: 0px;
-
 }
 
 .footer a {
@@ -65,5 +77,22 @@
 /* Navbar */
 
 .navbar {
+    background-color: #1A2930;
+}
+
+/* Categories */
+
+.row h4{
+    background-color: #363a3886;
+    width:100%;
+    text-align: center;
+}
+
+.viewAll{
+    background-color:#363a38;
+    color:white
+}
+
+.viewAll:hover{
     background-color: #1A2930;
 }

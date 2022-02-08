@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   </head>
 
-  <body class="d-flex flex-column min-vh-100">
+  <body class="bg-gradient bg-gray-600">
     <!-- Start of Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark min-vw-100">
         <div class="container-fluid">
@@ -16,7 +16,7 @@
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-4 mb-lg-0">
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
@@ -28,7 +28,7 @@
                 </li>
                 
             </ul>
-            <ul class="d-flex navbar-nav mb-2 mb-lg-0">
+            <ul class="d-flex navbar-nav mb-4 mb-lg-0 me-4">
                 <li>
                     <a class="nav-link" href="/login">Login</a>
                 </li>
@@ -39,87 +39,95 @@
     <!-- End of Nav Bar -->
 
     <!-- Start of Content -->
-        <div class="container min-vw-100">
-            <div class="row justify-content-center">
+        <div class="container-fluid vw-100 min-vh-100 px-5">
+            <div class="row justify-content-center mb-3 mt-4">
                 <div class="d-flex align-items-center justify-content-center col" >
-                    <a href="/products/view-all">
-                        <img src="" style="text-decoration:none;" />
-                        <h2>View All</h2>
+                    <a href="/products/view-all" style="text-decoration-line:none;">
+                        <h3 class="viewAll px-5 py-2"  >View All Products</h3>
                     </a>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col d-flex align-items-center justify-content-center">
-                    <div class="card text-white" style="width: 20rem;">
-                        <a href="/" style="text-decoration:none; color:white">
-                        <img src="/images/camera.jpg" class="card-img-top" alt="...">
-                        <div class="d-flex align-items-center justify-content-center card-img-overlay">
-                            <h3 class="card-title">Cameras</h3>
+                <div class="col-md-4 col-sm-6" >
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <div class="card text-white mb-4" style="border:none">
+                            <a href="/products/category/cameras" style="text-decoration:none; color:white">
+                            <img src="/images/camera.jpg" class="card-img-top" alt="..." style="border-radius:10px">
+                            <div class="d-flex align-items-center justify-content-center card-img-overlay">
+                                <h4 class="card-title">Digital Cameras</h4>
+                            </div>
+                            </a>
                         </div>
-                        </a>
                     </div>
                 </div>
-                <div class="col d-flex align-items-center justify-content-center">
-                    <div class="card text-white" style="width: 20rem;">
-                        <a href="/" style="text-decoration:none; color:white">
-                        <img src="/images/computer.jpg" class="card-img-top" alt="...">
-                        <div class="d-flex align-items-center justify-content-center card-img-overlay">
-                            <h3 class="card-title">Computers</h3>
+                <div class="col-md-4 col-sm-6" >
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <div class="card text-white mb-4" style="border:none">
+                            <a href="/products/category/lenses" style="text-decoration:none; color:white">
+                            <img src="/images/lenses.jpg" class="card-img-top" alt="..." style="border-radius:10px">
+                            <div class="d-flex align-items-center justify-content-center card-img-overlay">
+                                <h4 class="card-title">Lenses</h4>
+                            </div>
+                            </a>
                         </div>
-                        </a>
                     </div>
                 </div>
-                <div class="col d-flex align-items-center justify-content-center">
-                    <div class="card text-white" style="width: 20rem;">
-                        <a href="/" style="text-decoration:none; color:white">
-                        <img src="/images/tv.jpg" class="card-img-top" alt="...">
-                        <div class="d-flex align-items-center justify-content-center card-img-overlay">
-                            <h3 class="card-title">Televisions</h3>
+                <div class="col-md-4 col-sm-6" >
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <div class="card text-white mb-4" style="border:none">
+                            <a href="/products/category/drones" style="text-decoration:none; color:white">
+                            <img src="/images/drone.jpg" class="card-img-top" alt="..." style="border-radius:10px">
+                            <div class="d-flex align-items-center justify-content-center card-img-overlay">
+                                <h4 class="card-title">Drones & Aerial Imaging</h4>
+                            </div>
+                            </a>
                         </div>
-                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6" >
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <div class="card text-white mb-4" style="border:none">
+                            <a href="/products/category/lighting" style="text-decoration:none; color:white">
+                            <img src="/images/lighting.jpg" class="card-img-top" alt="..." style="border-radius:10px">
+                            <div class="d-flex align-items-center justify-content-center card-img-overlay">
+                                <h4 class="card-title">Lighting Equipment</h4>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6" >
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <div class="card text-white mb-4" style="border:none">
+                            <a href="/products/category/accessories" style="text-decoration:none; color:white">
+                            <img src="/images/accessories.jpg" class="card-img-top" alt="..." style="border-radius:10px">
+                            <div class="d-flex align-items-center justify-content-center card-img-overlay">
+                                <h4 class="card-title">Accessories</h4>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6" >
+                    <div class="col d-flex align-items-center justify-content-center" >
+                        <div class="card text-white mb-4" style="border:none">
+                            <a href="/products/category/books" style="text-decoration:none; color:white">
+                            <img src="/images/books.jpg" class="card-img-top" alt="..." style="border-radius:10px">
+                            <div class="d-flex align-items-center justify-content-center card-img-overlay">
+                                <h4 class="card-title">Books & Tutorials</h4>
+                            </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col d-flex align-items-center justify-content-center">
-                    <div class="card text-white" style="width: 20rem;">
-                        <a href="/" style="text-decoration:none; color:white">
-                        <img src="/images/appliance.jpg" class="card-img-top" alt="...">
-                        <div class="d-flex align-items-center justify-content-center card-img-overlay">
-                            <h3 class="card-title">Appliances</h3>
-                        </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col d-flex align-items-center justify-content-center">
-                    <div class="card text-white" style="width: 20rem;">
-                        <a href="/" style="text-decoration:none; color:white">
-                        <img src="/images/toy.jpg" class="card-img-top" alt="...">
-                        <div class="d-flex align-items-center justify-content-center card-img-overlay">
-                            <h3 class="card-title">Toys</h3>
-                        </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col d-flex align-items-center justify-content-center">
-                    <div class="card text-white" style="width: 20rem;">
-                        <a href="/" style="text-decoration:none; color:white">
-                        <img src="/images/video-game.jpg" class="card-img-top" alt="...">
-                        <div class="d-flex align-items-center justify-content-center card-img-overlay">
-                            <h3 class="card-title">Video Games</h3>
-                        </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        <div>
-        <!-- End of Content -->
+        </div>
+            <!-- End of Content -->
 
 
 
-        <!-- Start of All Footer -->
+            <!-- Start of All Footer -->
         <div class="container-fluid my-0 mx-0 py-0 px-0">
             <!-- Start of Blue Footer -->
             <div class="footer row">
@@ -185,7 +193,7 @@
             <!-- End of Copyright/Social Links -->
         </div>
         <!-- End of All Footer -->
-
+    
     <script src="https://kit.fontawesome.com/5704215aa3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
