@@ -40,10 +40,117 @@ router.get('/category/:category', (req, res) => {
             product.dataValues.avg_rating = calculateAvgRating(reviews).toFixed(2)
             return product.dataValues
         })
+        // const categories = editedListings.map((listing) => {
+        //    return listing.category
+        // })
+        console.log(category)
+        res.render('products', {products: editedListings, category: category})
+    })
+})
+
+// Start - Sorting By Price/Ratings
+router.get('/category/:category/price-desc', (req, res) => {
+    const category = req.params.category
+    models.Product.findAll({
+        include: [
+            {
+                model: models.User,
+                as: "user",
+            },
+            {
+                model: models.Review,
+                as: "reviews",
+            }
+        ],
+        where: [
+            {
+                category: category
+            }
+        ],
+        order:[
+            ['price', 'DESC']
+        ]
+    })
+    .then((listings) => {
+        const editedListings = listings.map((product) => {
+            const reviews = product.dataValues.reviews
+            product.dataValues.avg_rating = calculateAvgRating(reviews).toFixed(2)
+            return product.dataValues
+        })
+
+        res.render('products', {products: editedListings, category: category})
+    })
+    
+})
+
+router.get('/category/:category/price-aesc', (req, res) => {
+    const category = req.params.category
+    models.Product.findAll({
+        include: [
+            {
+                model: models.User,
+                as: "user",
+            },
+            {
+                model: models.Review,
+                as: "reviews",
+            }
+        ],
+        where: [
+            {
+                category: category
+            }
+        ],
+        order:[
+            ['price', 'ASC']
+        ]
+    })
+    .then((listings) => {
+        const editedListings = listings.map((product) => {
+            const reviews = product.dataValues.reviews
+            product.dataValues.avg_rating = calculateAvgRating(reviews).toFixed(2)
+            return product.dataValues
+        })
+        // Page will not render category if removed from params
+        res.render('products', {products: editedListings, category: category})
+    })
+    
+})
+
+router.get('/category/:category/rating', (req, res) => {
+    const category = req.params.category
+    models.Product.findAll({
+        include: [
+            {
+                model: models.User,
+                as: "user",
+            },
+            {
+                model: models.Review,
+                as: "reviews",
+            }
+        ],
+        where: [
+            {
+                category: category
+            }
+        ],
+        order:[
+            ['reviews', 'rating', 'DESC']
+        ]
+    })
+    .then((listings) => {
+        const editedListings = listings.map((product) => {
+            const reviews = product.dataValues.reviews
+            product.dataValues.avg_rating = calculateAvgRating(reviews).toFixed(2)
+            return product.dataValues
+        })
 
         res.render('products', {products: editedListings})
     })
+    
 })
+// End - Sorting By Price/Ratings
 
 router.get('/view-all', (req, res) => {
     models.Product.findAll({
