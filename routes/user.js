@@ -9,10 +9,10 @@ function authenticateMiddleware(req, res, next) {
             // send the user to their original request
             next()
         } else {
-            res.redirect('/')
+            res.redirect('/login')
         }
     } else {
-        res.redirect('/')
+        res.redirect('/login')
     }
 }
 
