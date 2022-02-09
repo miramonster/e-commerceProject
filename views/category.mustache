@@ -11,7 +11,7 @@
     <!-- Start of Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark min-vw-100">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">E-Commerce Name WIP</a>
+            <a class="navbar-brand" href="/">E-Commerce Name WIP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,7 +30,7 @@
             </ul>
             <ul class="d-flex navbar-nav mb-4 mb-lg-0 me-4">
                 <li>
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/{{log}}">{{log}}</a>
                 </li>
              </ul>
             </div>
@@ -43,7 +43,10 @@
             <div class="row justify-content-center mb-3 mt-4">
                 <div class="d-flex align-items-center justify-content-center col" >
                     <a href="/products/view-all" style="text-decoration-line:none;">
-                        <h3 class="viewAll px-5 py-2"  >View All Products</h3>
+                        <h4 class="viewAll px-5 py-2 rounded">View All Products</h4>
+                        {{! <div class="shadow-lg p-1 mb-5 bg-body rounded">
+                            <h4 class="viewAll px-5 py-2 rounded">View All Products</h4>
+                        </div> }}
                     </a>
                 </div>
             </div>
