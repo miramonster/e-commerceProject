@@ -1,4 +1,3 @@
-<html>
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -6,7 +5,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     </head>
     
-    <body>
+    <body class="userDashBody">
         <!-- Start of Nav Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark min-vw-100">
             <div class="container-fluid">
@@ -37,49 +36,63 @@
         </nav>
         <!-- End of Nav Bar -->
 
-        <div class="dropdown">
-            <button class="dropbtn">Sort By</button>
-            <div class="dropdown-content">
-                <a href="/products/category/{{category}}/price-aesc">Price: Low to High</a>
-                <a href="/products/category/{{category}}/price-desc">Price: High to Low</a>
-                <a href="/products/category/{{category}}/rating">Top Rated</a>
-            </div>
-        </div>
+        <h1>Profile</h1>
+        <br />
+        <h3>{{user.username}}</h3>
+        <h5>Rating: {{avgRating}}/5 ({{reviewAmt}})</h5>
 
-        <div class="dropdown">
-            <button class="dropbtn">Filter By</button>
-            <div class="dropdown-content">
-                <a href="/products/view-all">View All</a>
-                <a href="/products/category/cameras">Digital Cameras</a>
-                <a href="/products/category/lenses">Lenses</a>
-                <a href="/products/category/drones">Drones & Aerial Imaging</a>
-                <a href="/products/category/lighting">Lighting Equipment</a>
-                <a href="/products/category/accessories">Accessories</a>
-                <a href="/products/category/books">Books & Tutorials</a>
-            </div>
-        </div>
+        <h2>Seller Reviews</h2>
+        {{#reviews}}
+            <p>{{sellerreviewer.username}}</p>
+            <p>{{title}}</p>
+            <p>{{body}}</p>
+            <p>Rating: {{rating}}/5</p>
+        {{/reviews}}
 
-        <div class="container-fluid vw-100 min-vh-100 px-5">
+        <h2>Leave a review for the seller!</h2>
+        <form method="POST" action="/user/profile/{{user.id}}/review">
+            <select name="reviewValue">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <input type="text" name="titleText" />
+            <input type="text" name="bodyText" />
+            <input type="hidden" value="{{user.username}}" name="usernameText">
+            <input type="hidden" value="{{user.id}}" name="userIdText">
+            <button>Submit</button>
+        </form>
+
+        <!-- Seller Reviews -->
+        
+
+
+            {{! User Listings - Delete Function }}
+            <h2>Active Listings</h2>
+            <br />
             <div class="row">           
-            {{#products}}               
-                <div class="col-lg-3 col-md-6 col-sm-10" >
+            {{#listings}}               
+                <div class="col-lg-2 col-md-6 col-sm-10" >
                     <div class="col d-flex align-items-center justify-content-center">
-                        <div class="card mb-3" style="width: 18rem;">
-                            <a href="/products/detail/{{id}}" >
+                        <div class="card mb-3" style="width: 13rem;">
                                 <img src="/uploads/{{image}}" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{title}}</h5>
-                                    <p class="card-text">{{description}}</p>
-                                    <p class="card-text">Rating: {{avg_rating}}/5 ({{reviewAmt}})</p>
-                                    <p class="card-text">${{price}}/</p>
+                                    <a href="/products/detail/{{id}}">
+                                        <h5 class="userCardFont card-title">{{title}}</h5>
+                                        <p class="userCardFont card-text">Rating: {{avg_rating}}/5 ({{review_amt}})</p>
+                                        <p class="userCardFont card-text">${{price}}</p>
+                                    </a>
                                 </div>
-                            </a> 
                         </div>
                     </div>
                 </div>
-            {{/products}}        
+            {{/listings}}        
             </div>
         </div>
+
+
         <!-- Start of All Footer -->
         <div class="container-fluid my-0 mx-0 py-0 px-0">
             <!-- Start of Blue Footer -->
