@@ -284,3 +284,10 @@ color:black
 .nav-link {
     font-size:larger;
 }
+
+/* Profile */
+.reviewContainer {
+    height: 200px;
+    width: 500px;
+    overflow:scroll;
+}

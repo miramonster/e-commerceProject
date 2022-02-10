@@ -53,80 +53,78 @@
                 </div>
             </div>
         </nav>
+
         <!-- End of Nav Bar -->
-
-        <div class="container-fluid d-flex my-4">
-            <div class="row">
-                <div class="col-md-6 d-flex align-items-center justify-content-center flex-column col-sm-12">
-                </div>
-                <div class="col-md-6 d-flex align-items-center justify-content-center flex-column col-sm-12">
-                </div>
-            </div>
-        </div>
-
-        <h1>Merchant Profile</h1>
         <br />
-        <h3>{{user.username}}</h3>
-        <h5>Rating: {{avgRating}}/5 ({{reviewAmt}})</h5>
-
-        <h2>Merchant Reviews</h2>
-        {{#reviews}}
-            <div class="card m-3">
-                <div class="card-header">
-                    {{title}}
-                </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                    <p>{{body}}</p>
-                    <footer class="blockquote-footer">Rating: {{rating}}/5</footer>
-                    <a href="/user/profile/{{sellerreviewer.username}}/{{sellerreviewer.id}}">{{sellerreviewer.username}}</a>
-                    </blockquote>
-                </div>
-            </div>
-        {{/reviews}}
-
-        <h2>Leave a review for the seller!</h2>
-        <form method="POST" action="/user/profile/{{user.id}}/review">
-            <select name="reviewValue">
-                <option value=1>1</option>
-                <option value=2>2</option>
-                <option value=3>3</option>
-                <option value=4>4</option>
-                <option value=5>5</option>
-            </select>
-            <input type="text" name="titleText" />
-            <input type="text" name="bodyText" />
-            <input type="hidden" value="{{user.username}}" name="usernameText">
-            <input type="hidden" value="{{user.id}}" name="userIdText">
-            <button>Submit</button>
-        </form>
-
-        <!-- Seller Reviews -->
-        
-
-
-            {{! User Listings - Delete Function }}
-            <h2>Active Listings</h2>
-            <br />
-            <div class="row">           
-            {{#listings}}               
-                <div class="col-lg-2 col-md-6 col-sm-10" >
-                    <div class="col d-flex align-items-center justify-content-center">
-                        <div class="card mb-3" style="width: 13rem;">
-                                <img src="/uploads/{{image}}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <a href="/products/detail/{{id}}">
-                                        <h5 class="userCardFont card-title">{{title}}</h5>
-                                        <p class="userCardFont card-text">Rating: {{avg_rating}}/5 ({{review_amt}})</p>
-                                        <p class="userCardFont card-text">${{price}}</p>
-                                    </a>
+        <div class="container-fluid vw-100 min-vh-100 my-5">
+                <div class="row">
+                    <div class="col-md-6 d-flex flex-column col-sm-12">
+                        <h1>Merchant Profile</h1>
+                        <br />
+                        <h3>{{user.username}}</h3>
+                        <h5>Rating: {{avgRating}}/5 ({{reviewAmt}})</h5>
+                    </div>
+                    <div class="col-md-6 flex-column col-sm-12 justify-content-center">
+                        <h2>Leave a review for the seller!</h2>
+                        <form method="POST" action="/user/profile/{{user.id}}/review">
+                            <select name="reviewValue">
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
+                            </select>
+                            <input type="text" name="titleText" />
+                            <input type="text" name="bodyText" />
+                            <input type="hidden" value="{{user.username}}" name="usernameText">
+                            <input type="hidden" value="{{user.id}}" name="userIdText">
+                            <button>Submit</button>
+                        </form>
+                        <br />
+                        <h2>Merchant Reviews</h2>
+                        <div class="reviewContainer">
+                            {{#reviews}}
+                                <div class="card m-3">
+                                    <div class="card-header">
+                                        {{title}}
+                                    </div>
+                                    <div class="card-body">
+                                        <blockquote class="blockquote mb-0">
+                                        <p>{{body}}</p>
+                                        <footer class="blockquote-footer">Rating: {{rating}}/5</footer>
+                                        <a href="/user/profile/{{sellerreviewer.username}}/{{sellerreviewer.id}}">{{sellerreviewer.username}}</a>
+                                        </blockquote>
+                                    </div>
                                 </div>
+                            {{/reviews}}
                         </div>
                     </div>
                 </div>
-            {{/listings}}        
+            </div>
+        
+
+                <h2>Active Listings</h2>
+                <div class="row">           
+                    {{#listings}}               
+                        <div class="col-lg-2 col-md-6 col-sm-10" >
+                            <div class="col d-flex align-items-center justify-content-center">
+                                <div class="card mb-3" style="width: 13rem;">
+                                        <img src="/uploads/{{image}}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <a href="/products/detail/{{id}}">
+                                                <h5 class="userCardFont card-title">{{title}}</h5>
+                                                <p class="userCardFont card-text">Rating: {{avg_rating}}/5 ({{review_amt}})</p>
+                                                <p class="userCardFont card-text">${{price}}</p>
+                                            </a>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/listings}}        
+                </div>
             </div>
         </div>
+   
 
 
         <!-- Start of All Footer -->
