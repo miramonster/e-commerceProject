@@ -57,7 +57,7 @@ router.get('/listing/edit/:listingId', (req, res) => {
     const listingId = req.params.listingId
     models.Product.findByPk(listingId)
     .then((listing) => {
-        res.render('edit-listing', {oneListing: listing})
+        res.render('edit-listing', {oneListing: listing, log:"Logout"})
     })
 })
 // Render Seller's profile page - Profile page display Seller's user-reviews and listings
@@ -146,7 +146,7 @@ router.get('/profile/:username/:userId', (req, res) => {
 
 // Rendering add-listing mustache
 router.get('/dashboard/add-listing', (req,res) => {
-    res.render('add-listing')
+    res.render('add-listing', {log:"Logout"})
 })
     
 // Rendering Dashboard mustache
@@ -180,7 +180,7 @@ router.get('/dashboard', authenticateMiddleware, (req, res) => {
 
         console.log(listings)
 
-        res.render('user-dashboard',{userListings:editedListings})
+        res.render('user-dashboard',{userListings:editedListings, log:"Logout"})
     
     })
 })
@@ -201,7 +201,7 @@ router.get('/dashboard/reviews', authenticateMiddleware, (req, res) => {
 
     })
     .then((review) => {
-        res.render('reviews',{userReviews:review})
+        res.render('reviews',{userReviews:review, log:"Logout"})
     })
 })
 

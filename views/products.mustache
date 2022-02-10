@@ -8,26 +8,13 @@
     
     <body>
         <!-- Start of Nav Bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark min-vw-100">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light min-vw-100">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">E-Commerce Name WIP</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <a class="navbar-brand mx-auto ps-5 fw-bolder" href="/">
+                    <img src="/images/LogoCamera.png" style="width:85px"/>
+                </a>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-4 mb-lg-0">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="/user/dashboard">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="/products/category">Products</a>
-                    </li>
-                    
-                </ul>
-                <ul class="d-flex navbar-nav mb-4 mb-lg-0 me-4">
+                <ul class="d-flex navbar-nav mb-2 mb-lg-0 me-4 pb-5">
                     <li>
                         <a class="logBtn nav-link" href="/{{log}}">{{log}}</a>
                     </li>
@@ -35,27 +22,60 @@
                 </div>
             </div>
         </nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light min-vw-100 sticky-top">
+            <div class="container-fluid">
+                <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mx-auto pe-4">
+                            <li class="nav-item mx-5">
+                            <a class="nav-link active fw-bold" aria-current="page" href="/">Home</a>
+                            </li>
+
+                            <li class="nav-item dropdown mx-5">
+                                <a class="nav-link dropdown-toggle fw-bold" href="/products/category" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Products
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/products/view-all">View All</a></li>
+                                    <li><a class="dropdown-item" href="/products/category/cameras">Digital Cameras</a></li>
+                                    <li><a class="dropdown-item" href="/products/category/lenses">Lenses</a></li>
+                                    <li><a class="dropdown-item" href="/products/category/drones">Drones & Aerial Imaging</a></li>
+                                    <li><a class="dropdown-item" href="/products/category/lighting">Lighting Equipment</a></li>
+                                    <li><a class="dropdown-item" href="/products/category/accessories">Accessories</a></li>
+                                    <li><a class="dropdown-item" href="/products/category/books">Books & Tutorials</a></li>
+                                </ul>
+                            <li class="nav-item mx-5">
+                            <a class="nav-link fw-bold" href="/user/dashboard">Profile</a>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+        </nav>
         <!-- End of Nav Bar -->
 
-        <div class="dropdown">
-            <button class="dropbtn">Sort By</button>
-            <div class="dropdown-content">
+        <div class="container-fluid d-flex justify-content-center my-4">
+            <div class="dropdown mx-4">
+                <button class="dropbtn">Sort By</button>
+                <div class="dropdown-content">
                 <a href="/products/category/{{category}}/price-aesc">Price: Low to High</a>
                 <a href="/products/category/{{category}}/price-desc">Price: High to Low</a>
                 <a href="/products/category/{{category}}/rating">Top Rated</a>
+                </div>
             </div>
-        </div>
 
-        <div class="dropdown">
-            <button class="dropbtn">Filter By</button>
-            <div class="dropdown-content">
-                <a href="/products/view-all">View All</a>
-                <a href="/products/category/cameras">Digital Cameras</a>
-                <a href="/products/category/lenses">Lenses</a>
-                <a href="/products/category/drones">Drones & Aerial Imaging</a>
-                <a href="/products/category/lighting">Lighting Equipment</a>
-                <a href="/products/category/accessories">Accessories</a>
-                <a href="/products/category/books">Books & Tutorials</a>
+            <div class="dropdown mx-4">
+                <button class="dropbtn">Filter By</button>
+                <div class="dropdown-content">
+                    <a href="/products/view-all">View All</a>
+                    <a href="/products/category/cameras">Digital Cameras</a>
+                    <a href="/products/category/lenses">Lenses</a>
+                    <a href="/products/category/drones">Drones & Aerial Imaging</a>
+                    <a href="/products/category/lighting">Lighting Equipment</a>
+                    <a href="/products/category/accessories">Accessories</a>
+                    <a href="/products/category/books">Books & Tutorials</a>
+                </div>
             </div>
         </div>
 
