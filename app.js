@@ -33,9 +33,11 @@ app.use('/user', userRoutes)
 app.use('/products', productRoutes)
 
 app.get('/', (req, res) => {
-
-    res.render('index')
-    
+    if (req.session.user) {
+        res.render('index', {log:"Logout"})
+    } else {
+        res.render('index', {log:"Login"})
+    }
 })
 
 
@@ -43,7 +45,7 @@ app.get('/logout', (req, res) =>{
 
     if(req.session) {
         req.session.destroy();
-        res.render('index', {logoutMessage:'Logged Out!'})
+        res.render('index', {logoutMessage:'Logged Out!', log:"Login"})
     }
 })
 

@@ -340,6 +340,7 @@ router.get('/detail/:productId', (req, res) => {
     .then((listing) => {
         // Calculating Average Rating
         const reviews = listing.dataValues.reviews
+        console.log(reviews)
         listing.dataValues.avgRating = calculateAvgRating(reviews).toFixed(2)
         listing.dataValues.reviewAmt = reviews.length
         res.render('details', listing.dataValues)
