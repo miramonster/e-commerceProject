@@ -6,6 +6,28 @@ const formidable = require('formidable')
 const res = require('express/lib/response')
 const{v4: uuidv4} = require('uuid')
 
+// Allowing user to upload an image to add to their listing, also generates uuid
+function uploadFile(req, callback) {
+
+    new formidable.IncomingForm().parse(req)
+    .on('fileBegin', (name, file) => {
+        uniqueFilename = `${uuidv4()}.${file.name.split('.').pop()}`
+        file.name = uniqueFilename
+        file.path = __basedir + '/static/uploads/' + file.name
+    })
+    .on('file', (name, file) => {
+        callback(file.name)
+    })
+}
+
+// Uploading image to uploads folder
+router.post('/upload', (req, res) => {
+    uploadFile(req, (photoURL) => {
+        photoURL = `/uploads/${photoURL}`
+        res.render('add-listing', {imageURL:photoURL, className:'product-preview-image'})
+    })
+})
+
 function authenticateMiddleware(req, res, next) {
     if(req.session) {
         if(req.session.user) {
@@ -29,6 +51,15 @@ function calculateAvgRating(array) {
     }
 }
 
+
+// Fetching and display listing to edit
+router.get('/listing/edit/:listingId', (req, res) => {
+    const listingId = req.params.listingId
+    models.Product.findByPk(listingId)
+    .then((listing) => {
+        res.render('edit-listing', {oneListing: listing})
+    })
+})
 // Render Seller's profile page - Profile page display Seller's user-reviews and listings
 router.get('/profile/:username/:userId', (req, res) => {
     const userId = parseInt(req.params.userId)
@@ -70,14 +101,14 @@ router.get('/profile/:username/:userId', (req, res) => {
         const avgRating = user.dataValues.avgRating
         const reviewAmt = user.dataValues.reviewAmt
         const seller = user.dataValues
-
+        
         // Getting Rating for Items within Sellers Page Profile
         const listingReviews = listings.map((listing) => {
             for(var i=0; i<listing.reviews.length; i++) {
                 return listing.reviews[i]
             }
         })
-
+        
         // Mapping the listings to retrieve the average rating for the listings displayed
         const editedListings = listings.map((listingReviews) => {
             const reviews = listingReviews.dataValues.reviews
@@ -85,24 +116,20 @@ router.get('/profile/:username/:userId', (req, res) => {
             listingReviews.dataValues.review_amt = reviews.length
             console.log(reviews)
             return listingReviews.dataValues
-            
         })
-        
-        
         if (req.session.user) {
             res.render('profile', 
-                {   
-                    reviews:reviews, 
-                    listings:editedListings, 
+            {   
+                reviews:reviews, 
+                listings:editedListings, 
                     avgRating:avgRating, 
                     reviewAmt:reviewAmt,
                     user: seller,
                     log:"Logout"
                 }
-            )
-            
-        } else {
-            res.render('profile', 
+                )
+            } else {
+                res.render('profile', 
                 {   
                     reviews:reviews, 
                     listings:listings, 
@@ -111,41 +138,17 @@ router.get('/profile/:username/:userId', (req, res) => {
                     user: seller,
                     log:"Login"
                 }
-            )
-        }
-    })
+                )
+            }
+        })
 })
-
-// Adding a user review to the seller's profile page
-router.post('/profile/:userId/review', (req, res) => {
-
-    const title = req.body.titleText
-    const body = req.body.bodyText
-    const sellerUserId = req.body.userIdText
-    const userId = req.session.userId
-    const rating = parseInt(req.body.reviewValue)
-    const username = req.body.usernameText
-
-    const review = models.SellerReview.build({
-        title: title,
-        body: body,
-        user_id: userId,
-        rating: rating,
-        seller_id: sellerUserId
-    })
     
-    review.save().then(() => {
-        res.redirect(`/user/profile/${username}/${sellerUserId}`)
-    })
-
-    
-})
 
 // Rendering add-listing mustache
 router.get('/dashboard/add-listing', (req,res) => {
     res.render('add-listing')
 })
-
+    
 // Rendering Dashboard mustache
 router.get('/dashboard', authenticateMiddleware, (req, res) => {
     const userId = req.session.userId
@@ -181,7 +184,7 @@ router.get('/dashboard', authenticateMiddleware, (req, res) => {
     
     })
 })
-
+    
 // Rendering user's reviews
 router.get('/dashboard/reviews', authenticateMiddleware, (req, res) => {
     const userId = req.session.userId
@@ -201,6 +204,32 @@ router.get('/dashboard/reviews', authenticateMiddleware, (req, res) => {
         res.render('reviews',{userReviews:review})
     })
 })
+
+// Adding a user review to the seller's profile page
+router.post('/profile/:userId/review', (req, res) => {
+        
+        const title = req.body.titleText
+        const body = req.body.bodyText
+        const sellerUserId = req.body.userIdText
+        const userId = req.session.userId
+        const rating = parseInt(req.body.reviewValue)
+        const username = req.body.usernameText
+
+    const review = models.SellerReview.build({
+        title: title,
+        body: body,
+        user_id: userId,
+        rating: rating,
+        seller_id: sellerUserId
+    })
+    
+    review.save().then(() => {
+        res.redirect(`/user/profile/${username}/${sellerUserId}`)
+    })
+
+    
+})
+
 
 // Creating a listing to sell
 router.post('/add-listing', (req, res) => {
@@ -223,15 +252,6 @@ router.post('/add-listing', (req, res) => {
         res.redirect('/user/dashboard')
     })
 
-})
-
-// Fetching and display listing to edit
-router.get('/listing/edit/:listingId', (req, res) => {
-    const listingId = req.params.listingId
-    models.Product.findByPk(listingId)
-    .then((listing) => {
-        res.render('edit-listing', {oneListing: listing})
-    })
 })
 
 
@@ -258,26 +278,7 @@ router.post('/listing/update/:listingId', (req, res) => {
 })
 
 
-// Allowing user to upload an image to add to their listing
-function uploadFile(req, callback) {
 
-    new formidable.IncomingForm().parse(req)
-    .on('fileBegin', (name, file) => {
-        uniqueFilename = `${uuidv4()}.${file.name.split('.').pop()}`
-        file.name = uniqueFilename
-        file.path = __basedir + '/static/uploads/' + file.name
-    })
-    .on('file', (name, file) => {
-        callback(file.name)
-    })
-}
-
-router.post('/upload', (req, res) => {
-    uploadFile(req, (photoURL) => {
-        photoURL = `/uploads/${photoURL}`
-        res.render('add-listing', {imageURL:photoURL, className:'product-preview-image'})
-    })
-})
 
 // Deleting a listing and its comments (cascade)
 router.post('/listing/delete/:listingId', (req, res) => {
