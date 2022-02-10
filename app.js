@@ -12,7 +12,7 @@ const SALT_ROUND = 10
 
 const PORT = process.env.PORT || 8080
 
-
+global.__basedir = __dirname
 
 // setting up Express to use Mustache Express as template pages 
 app.engine('mustache', mustacheExpress())
@@ -27,13 +27,26 @@ app.use(session({
     resave: true
 }))
 
-app.use(express.urlencoded())
 app.use(express.static('static'))
+app.use(express.urlencoded())
 app.use('/user', userRoutes)
 app.use('/products', productRoutes)
 
 app.get('/', (req, res) => {
-    res.render('index')
+    if (req.session.user) {
+        res.render('index', {log:"Logout"})
+    } else {
+        res.render('index', {log:"Login"})
+    }
+})
+
+
+app.get('/logout', (req, res) =>{
+
+    if(req.session) {
+        req.session.destroy();
+        res.render('index', {logoutMessage:'Logged Out!', log:"Login"})
+    }
 })
 
 app.get('/login', (req,res) => {
