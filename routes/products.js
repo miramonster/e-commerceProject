@@ -343,7 +343,14 @@ router.get('/detail/:productId', (req, res) => {
         console.log(reviews)
         listing.dataValues.avgRating = calculateAvgRating(reviews).toFixed(2)
         listing.dataValues.reviewAmt = reviews.length
-        res.render('details', listing.dataValues)
+        const display = listing.dataValues
+        console.log(listing)
+
+        if (req.session.user) {
+            res.render('details', {listing:display, reviews:reviews, log:"Logout"})
+        } else {
+            res.render('details', {listing:display, reviews:reviews, log:"Login"})
+        }
     })
     
 })

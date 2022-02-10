@@ -145,6 +145,13 @@ display: block;
     width:300px;
 }
 
+/* Product Details Image */
+
+.details-product-image {
+    width:100%;
+    border-radius: 10px
+}
+
 /* Login Logout Button */
 .logBtn {
     color: #000000 !important;
@@ -170,4 +177,16 @@ display: block;
 
 .userDashBtn {
     width:fit-content !important;
+}
+
+/* Review Text Box */
+
+.reviewTitleBox{
+    width:38vw;
+    margin-bottom: 5px;
+}
+
+.reviewBodyBox{
+    width:38vw;
+    resize: none;
 }

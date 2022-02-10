@@ -54,45 +54,76 @@
             </div>
         </nav>
         <!-- End of Nav Bar -->
-
-            <li>
-                <h3>{{title}}<h3>
-                <p>{{description}}</p>
-                <p>{{price}}</p>
-                <p>{{avgRating}}/5 ({{reviewAmt}})</p>
-                <p>Seller: 
-                <a href="/user/profile/{{user.username}}/{{user.id}}">{{user.username}}</a>
-                </p>
-
-                <br />
-
-                <h4>Write a Review</h4>
-                <form method="POST" action="/products/detail/{{id}}/review">
+        <br />
+        
+        {{#listing}}
+        <div class="container-fluid d-flex my-4">
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-center justify-content-center flex-column col-sm-12">
+                    <img src="/uploads/{{image}}" class="details-product-image"/>
+                    <p>Rating: {{avgRating}}/5 ({{reviewAmt}})</p>
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-center flex-column col-sm-12">
+                    <h3>{{title}}</h3>
+                    <p>{{description}}</p>
+                    <p>${{price}}</p>
+                    <p>Seller: 
+                    <a href="/user/profile/{{user.username}}/{{user.id}}">{{user.username}}</a>
+                    </p>
+                    <button class="btn btn-warning btn-lg" >Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        {{/listing}}
+        <br />
+        <div class="container-fluid d-flex flex-column align-items-center my-5">
+            <h4>Leave a Review</h4>
+            <form method="POST" action="/products/detail/{{listing.id}}/review">
+                <div class="container-fluid d-flex flex-column align-items-center flex-column mb-3">
+                    <input type="text" name="titleText" placeholder="Title" class="reviewTitleBox"/>
+                    <textarea name="bodyText" placeholder="Body" rows="3" class="reviewBodyBox"></textarea>
+                </div>
+                <div class="container">
+                    <label>Rating:</label>
                     <select name="reviewValue">
                         <option value=1>1</option>
                         <option value=2>2</option>
                         <option value=3>3</option>
                         <option value=4>4</option>
                         <option value=5>5</option>
-                     </select>
-                    <input type="text" name="titleText" />
-                    <input type="text" name="bodyText" />
-                    <button>Submit</button>
-                </form>
-                <h4>Reviews<h4>
+                    </select>
+                </div>
+                <div class="container-fluid d-flex justify-content-center mx-auto">
+                    <button class="btn btn-warning btn-md">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <br />
+
+        <div class="container-fluid d-flex flex-column align-items-center my-5">
+            <h4>Product Reviews</h4>
+            <div class="container-fluid d-flex align-items-center my-5 mx-3">
                 {{#reviews}}
-                    <p>{{reviewer.username}}</p>
-                    <p>{{title}}</p>
-                    <p>{{body}}</p>
-                    <p>Rating: {{rating}}/5</p>
+                    <div class="card m-3">
+                        <div class="card-header">
+                            {{title}}
+                        </div>
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                            <p>{{body}}</p>
+                            <footer class="blockquote-footer">Rating: {{rating}}/5</footer>
+                            <a href="/user/profile/{{reviewer.username}}/{{reviewer.id}}">{{reviewer.username}}</a>
+                            </blockquote>
+                        </div>
+                    </div>
                 {{/reviews}}
+            </div>
+        </div>
+            
 
 
-            </li>
-
-        </ul>
-
-                <!-- Start of All Footer -->
+        <!-- Start of All Footer -->
         <div class="container-fluid my-0 mx-0 py-0 px-0">
             <!-- Start of Blue Footer -->
             <div class="footer row">

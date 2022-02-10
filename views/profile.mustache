@@ -55,17 +55,43 @@
         </nav>
         <!-- End of Nav Bar -->
 
-        <h1>Profile</h1>
+        <div class="container-fluid d-flex my-4">
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-center justify-content-center flex-column col-sm-12">
+                    <img src="/uploads/{{image}}" class="details-product-image"/>
+                    <p>Rating: {{avgRating}}/5 ({{reviewAmt}})</p>
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-center flex-column col-sm-12">
+                    <h3>{{title}}</h3>
+                    <p>{{description}}</p>
+                    <p>${{price}}</p>
+                    <p>Seller: 
+                    <a href="/user/profile/{{user.username}}/{{user.id}}">{{user.username}}</a>
+                    </p>
+                    <button class="btn btn-warning btn-lg" >Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <h1>Merchant Profile</h1>
         <br />
         <h3>{{user.username}}</h3>
         <h5>Rating: {{avgRating}}/5 ({{reviewAmt}})</h5>
 
-        <h2>Seller Reviews</h2>
+        <h2>Merchant Reviews</h2>
         {{#reviews}}
-            <p>{{sellerreviewer.username}}</p>
-            <p>{{title}}</p>
-            <p>{{body}}</p>
-            <p>Rating: {{rating}}/5</p>
+            <div class="card m-3">
+                <div class="card-header">
+                    {{title}}
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                    <p>{{body}}</p>
+                    <footer class="blockquote-footer">Rating: {{rating}}/5</footer>
+                    <a href="/user/profile/{{sellerreviewer.username}}/{{sellerreviewer.id}}">{{sellerreviewer.username}}</a>
+                    </blockquote>
+                </div>
+            </div>
         {{/reviews}}
 
         <h2>Leave a review for the seller!</h2>

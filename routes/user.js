@@ -278,8 +278,6 @@ router.post('/listing/update/:listingId', (req, res) => {
 })
 
 
-
-
 // Deleting a listing and its comments (cascade)
 router.post('/listing/delete/:listingId', (req, res) => {
     const listingId = req.params.listingId
