@@ -56,7 +56,7 @@
 
         <!-- End of Nav Bar -->
         <br />
-        <div class="container-fluid vw-100 min-vh-100 my-5">
+            <div class="container-fluid vw-100 min-vh-100 my-5">
                 <div class="row">
                     <div class="col-md-6 d-flex flex-column col-sm-12">
                         <h1>Merchant Profile</h1>
@@ -65,7 +65,7 @@
                         <h5>Rating: {{avgRating}}/5 ({{reviewAmt}})</h5>
                     </div>
                     <div class="col-md-6 flex-column col-sm-12 justify-content-center">
-                        <h2>Leave a review for the seller!</h2>
+                        <h2>Leave a Review</h2>
                         <form method="POST" action="/user/profile/{{user.id}}/review">
                             <select name="reviewValue">
                                 <option value=1>1</option>
@@ -100,15 +100,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        
 
-                <h2>Active Listings</h2>
-                <div class="row">           
-                    {{#listings}}               
-                        <div class="col-lg-2 col-md-6 col-sm-10" >
-                            <div class="col d-flex align-items-center justify-content-center">
-                                <div class="card mb-3" style="width: 13rem;">
+                <br />
+
+                <div class="container-fluid justify-content-center align-content-center">
+                    <h2 class="pt-5 pb-2">Active Listings</h2>
+                    <div class="row">           
+                        {{#listings}}               
+                            <div class="col-lg-2 col-md-6 col-sm-10 align-items-center justify-content-center" >
+                                <div class="col d-flex align-items-center justify-content-center">
+                                    <div class="card mb-3" style="width: 13rem;">
                                         <img src="/uploads/{{image}}" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <a href="/products/detail/{{id}}">
@@ -117,10 +118,11 @@
                                                 <p class="userCardFont card-text">${{price}}</p>
                                             </a>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {{/listings}}        
+                        {{/listings}}        
+                    </div>
                 </div>
             </div>
         </div>
