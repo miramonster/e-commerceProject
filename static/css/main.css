@@ -129,6 +129,19 @@
     text-decoration: none;
     display: block;
   }
+
+  .btn.btn-primary{
+    background-color: #1A2930;
+    border-color: #1A2930;
+    margin-right:10px;
+}
+.btn.btn-primary:hover{
+    background-color: #363a38;
+    border-color: #363a38;
+
+}
+
+
   
   /* Change color of dropdown links on hover */
   .dropdown-content a:hover {background-color: #C6C1C0;}
