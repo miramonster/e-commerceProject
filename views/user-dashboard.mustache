@@ -87,23 +87,23 @@
                 <div class="col-lg-2 col-md-6 col-sm-10" >
                     <div class="col d-flex align-items-center justify-content-center">
                         <div class="card mb-3" style="width: 13rem;">
-                                <img src="/uploads/{{image}}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <a href="/products/detail/{{id}}">
-                                        <h5 class="userCardFont card-title">{{title}}</h5>
-                                        <p class="userCardFont card-text">Rating: {{avg_rating}}/5 ({{reviewAmt}})</p>
-                                        <p class="userCardFont card-text">${{price}}</p>
-                                    </a>
-                                    <br /> 
-                                    <div class="row">
-                                        <form class="cardRow" method="POST" action="/user/listing/delete/{{id}}">
-                                            <button class="btn btn-warning btn-sm">Delete</button>
-                                        </form>
-                                        <form class="cardRow" method="GET" action="/user/listing/edit/{{id}}">
-                                            <button class="btn btn-warning btn-sm">Edit</button>
-                                        </form>
-                                    </div>
+                            <img src="/uploads/{{image}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <a href="/products/detail/{{id}}">
+                                    <h5 class="userCardFont card-title">{{title}}</h5>
+                                    <p class="userCardFont card-text">Rating: {{avg_rating}}/5 ({{reviewAmt}})</p>
+                                    <p class="userCardFont card-text">${{price}}</p>
+                                </a>
+                                <br /> 
+                                <div class="row">
+                                    <form class="cardRow" method="POST" action="/user/listing/delete/{{id}}">
+                                        <button class="btn btn-warning btn-sm">Delete</button>
+                                    </form>
+                                    <form class="cardRow" method="GET" action="/user/listing/edit/{{id}}">
+                                        <button class="btn btn-warning btn-sm">Edit</button>
+                                    </form>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
