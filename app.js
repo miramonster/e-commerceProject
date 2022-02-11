@@ -133,6 +133,6 @@ app.post('/register', async (req, res) => {
 })
 
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Server is running...')
 })
