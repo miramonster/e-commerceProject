@@ -132,7 +132,7 @@ router.get('/profile/:username/:userId', (req, res) => {
                 res.render('profile', 
                 {   
                     reviews:reviews, 
-                    listings:listings, 
+                    listings: editedListings, 
                     avgRating:avgRating, 
                     reviewAmt:reviewAmt,
                     user: seller,
