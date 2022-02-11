@@ -53,33 +53,43 @@
             </div>
         </nav>
         <!-- End of Nav Bar -->
+
+
         <div class="container-fluid min-vh-100">
-            {{! Add a New Listing }}
-            <h2>Add a Listing<h2>
-            {{! Uploading Photo}}
-            <form action="/user/upload" method="POST" enctype="multipart/form-data">
-                <label>Photo</label>
-                <input type="file" name="photo" />
-                <button type="submit">Upload</button>
-            </form>
+            <div class="row">
+                <div class="d-flex justify-content-center my-5">
+                    <div class="col-md-6 d-flex flex-column col-sm-12">
+                        <h2>Add a Listing<h2>
+                        {{! Uploading Photo}}
+                        <form action="/user/upload" method="POST" enctype="multipart/form-data">
+                            <label>Photo</label>
+                            <input type="file" name="photo" />
+                            <button type="submit">Upload</button>
+                        </form>
 
-            <img src="{{imageURL}}" class="{{className}}"/>
+                        <img src="{{imageURL}}" class="{{className}}"/>
 
-            <form method="POST" action="/user/add-listing">
-                <input type="text" placeholder="Title" name="titleText" />
-                <input type="text" placeholder="Description" name="descriptionText" />
-                <input type="text" placeholder="Price" name="priceText" />
-                <select name="categoryText">
-                    <option value="">Select Category</option>
-                    <option value="cameras">Digital Cameras</option>
-                    <option value="lenses">Lenses</option>
-                    <option value="drones">Drones</option>
-                    <option value="lighting">Lighting Equipment</option>
-                    <option value="accessories">Accessories</option>
-                    <option value="books">Books & Tutorials</option>
-                </select>      
-                <button>Add Listing</button>
-            </form>
+                        <form method="POST" action="/user/add-listing">
+                            <input type="text" placeholder="Title" name="titleText" />
+                            <input type="text" placeholder="Description" name="descriptionText" />
+                            <input type="text" placeholder="Price" name="priceText" />
+                            <select name="categoryText">
+                                <option value="">Select Category</option>
+                                <option value="cameras">Digital Cameras</option>
+                                <option value="lenses">Lenses</option>
+                                <option value="drones">Drones</option>
+                                <option value="lighting">Lighting Equipment</option>
+                                <option value="accessories">Accessories</option>
+                                <option value="books">Books & Tutorials</option>
+                            </select>      
+                            <button>Add Listing</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
 
         <!-- Start of All Footer -->
