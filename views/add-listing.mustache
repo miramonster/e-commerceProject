@@ -69,11 +69,11 @@
 
                         <img src="{{imageURL}}" class="{{className}}"/>
 
-                        <form method="POST" action="/user/add-listing">
-                            <input type="text" placeholder="Title" name="titleText" />
-                            <input type="text" placeholder="Description" name="descriptionText" />
-                            <input type="text" placeholder="Price" name="priceText" />
-                            <select name="categoryText">
+                        <form method="POST" action="/user/add-listing" required>
+                            <input type="text" placeholder="Title" name="titleText" required/>
+                            <textarea type="text" rows="3" placeholder="Description" name="descriptionText" required></textarea>
+                            <input type="text" placeholder="Price" name="priceText" required/>
+                            <select name="categoryText" required>
                                 <option value="">Select Category</option>
                                 <option value="cameras">Digital Cameras</option>
                                 <option value="lenses">Lenses</option>
