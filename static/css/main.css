@@ -1,0 +1,307 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #030e12;
+    overflow-x: hidden;
+    background-color: #C6C1C0;
+  }
+
+
+
+/* All: Footer */
+.footer {
+    background-color: #cacaca;
+    color: #000000;
+    font-size: 10px;
+    padding: 48px;
+    margin: 0px;
+}
+
+.footer a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.footer a:hover {
+    color: #F8B053;
+}
+
+.footer-subscribe {
+    font-size: 12px;
+    color: #000000;
+    width: 75%;
+}
+
+.subscribeBtn {
+    background: #F7CE3E;
+    border: 0px;
+    color: #000000;
+    font-size: 16px;
+    margin-left: 7px;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.subscribeBtn:hover {
+    background-color: #000000;
+    color:white;
+}
+
+
+.footer-social {
+    background-color: #000000;
+    color: #ffffff;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.footer-social a {
+    color: #ffffff;
+}
+
+.footer-social a:hover {
+    color: #004d64;
+}
+
+/* Mobile */
+.mobile {
+    display: none;
+}
+
+/* Navbar */
+
+.navbar {
+    background-color: #363a38;
+}
+
+/* Categories Mustache*/
+
+.row h4{
+    background-color: #363a3886;
+    width:100%;
+    text-align: center;
+}
+
+.viewAll{
+    background-color:#d6d6d6 !important;
+    color:rgb(0, 0, 0);
+}
+
+.viewAll:hover{
+    background-color: #363a38 !important;
+    color: white;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 16px;
+    font-size: 16px;
+
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .btn.btn-primary{
+    background-color: #1A2930;
+    border-color: #1A2930;
+    margin-right:10px;
+}
+.btn.btn-primary:hover{
+    background-color: #363a38;
+    border-color: #363a38;
+
+}
+
+
+  
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #C6C1C0;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #1A2930;}
+
+/* border: #000000; */
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #6ba8f6; color:rgb(255, 255, 255);}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #cacaca;}
+
+/* Product Preview Image */
+.product-preview-image {
+    width:300px;
+}
+
+/* Product Details Image */
+
+.details-product-image {
+    width:100%;
+    border-radius: 10px;
+}
+
+/* Login Logout Button */
+.logBtn {
+    color: #000000 !important;
+    font-weight: 700;
+}
+
+.logBtn:hover {
+    color:#f7ce3e !important;
+}
+
+/* User Dashboard */
+.userCardFont {
+    font-size: small;
+}
+
+.cardRow {
+    width:fit-content !important;
+}
+
+.userDashBody {
+    background-color: #c6c1c02a;
+}
+
+.userDashBtn {
+    width:fit-content !important;
+}
+
+/* Review Text Box */
+
+.reviewTitleBox{
+    width:38vw;
+    margin-bottom: 5px;
+}
+
+.reviewBodyBox{
+    width:38vw;
+    resize: none;
+}
+
+/* Carousel */
+.carousel-caption {
+width: 100%;
+height: 100%;
+left: 0 !important;
+padding-top: 25% !important;
+}
+  
+.carousel-caption a {
+background-color: rgba(0, 0, 0, 0.904);
+color: #fff;
+padding: 15px 40px;
+border-radius: 100px;
+text-decoration: none;
+font-size:x-large;
+
+}
+
+.carousel-caption a:hover {
+opacity: 0.8;
+background-color: #f7ce3e;
+color:black
+}
+
+@media only screen and (max-width: 600px) {
+.desktop {
+    display: none;
+}
+
+.carousel-item img {
+    height: 80vh;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.carousel-caption {
+    padding-top: 75% !important;
+}
+}
+
+.nav-link {
+    font-size:larger;
+}
+
+/* Profile */
+.reviewContainer {
+    height: 200px;
+    width: 500px;
+    overflow:scroll;
+}
+
+.dropbtn {
+    font-size:large;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.card-body h5,p{
+    color:black !important;
+
+}
