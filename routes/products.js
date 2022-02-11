@@ -355,7 +355,7 @@ router.get('/detail/:productId', (req, res) => {
     
 })
 
-
+// Creating a product review
 router.post('/detail/:productId/review', (req, res) => {
 
     const title = req.body.titleText
@@ -379,5 +379,26 @@ router.post('/detail/:productId/review', (req, res) => {
     
 })
 
+// Adding product to wishlist/saveditems
+router.post('/detail/:productId/list', (req, res) => {
+    const title = req.body.saveTitle
+    const description = req.body.saveDescription
+    const price = parseInt(req.body.savePrice)
+    const category = req.body.saveCategory
+    const userId = req.session.userId
+    const productId = req.params.productId
+    const image = req.body.saveImg
+    const savedItem = models.SavedItem.build({
+        title: title,
+        description: description,
+        price: price,
+        category: category,
+        user_id: userId,
+        image: image
+    })
+    savedItem.save().then(() => {
+        res.redirect(`/products/detail/${productId}`)
+    })
+})
 
 module.exports = router

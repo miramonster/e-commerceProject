@@ -90,12 +90,13 @@
 }
 
 .viewAll{
-    background-color:#363a38 !important;
-    color:white;
+    background-color:#d6d6d6 !important;
+    color:rgb(0, 0, 0);
 }
 
 .viewAll:hover{
-    background-color: #1A2930 !important;
+    background-color: #363a38 !important;
+    color: white;
 }
 
 /* Dropdown Button */
@@ -199,7 +200,7 @@ display: block;
 
 .details-product-image {
     width:100%;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 /* Login Logout Button */
@@ -290,4 +291,17 @@ color:black
     height: 200px;
     width: 500px;
     overflow:scroll;
+}
+
+.dropbtn {
+    font-size:large;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.card-body h5,p{
+    color:black !important;
+
 }

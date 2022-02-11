@@ -28,7 +28,7 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mx-auto pe-4">
+                        <ul class="navbar-nav mx-auto">
                             <li class="nav-item mx-5">
                             <a class="nav-link active fw-bold" aria-current="page" href="/">Home</a>
                             </li>
@@ -47,26 +47,35 @@
                                     <li><a class="dropdown-item" href="/products/category/books">Books & Tutorials</a></li>
                                 </ul>
                             <li class="nav-item mx-5">
-                            <a class="nav-link fw-bold" href="/user/dashboard">Profile</a>
+                            <a class="nav-link fw-bold" href="/user/dashboard">Dashboard</a>
                             </li>
                         </ul>
                 </div>
             </div>
         </nav>
         <!-- End of Nav Bar -->
-
+        <br />
         <div class="container-fluid min-vh-100">
-            <ul>
             {{#userReviews}}
-
-            <li>
-                {{reviewer.username}}
-                {{title}}
-                {{body}}
-            </li>
-
+            <div class="card m-3">
+                <div class="card-header">
+                    {{title}}
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                    <p>{{body}}</p>
+                    <footer class="blockquote-footer">Rating: {{rating}}/5</footer>
+                    <a href="/products/detail/{{product_id}}">Product Link</a>
+                    </blockquote>
+                    <form method="POST" action="/user/dashboard/reviews/delete/{{id}}">
+                        <button>Delete</button>
+                    </form>
+                </div>
+            </div>
             {{/userReviews}}
-            </ul>
+            {{^userReviews}}
+                You have not made any reviews.
+            {{/userReviews}}
         </div>
 
                 <!-- Start of All Footer -->

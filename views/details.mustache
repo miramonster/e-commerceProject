@@ -28,7 +28,7 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mx-auto pe-4">
+                        <ul class="navbar-nav mx-auto">
                             <li class="nav-item mx-5">
                             <a class="nav-link active fw-bold" aria-current="page" href="/">Home</a>
                             </li>
@@ -47,7 +47,7 @@
                                     <li><a class="dropdown-item" href="/products/category/books">Books & Tutorials</a></li>
                                 </ul>
                             <li class="nav-item mx-5">
-                            <a class="nav-link fw-bold" href="/user/dashboard">Profile</a>
+                            <a class="nav-link fw-bold" href="/user/dashboard">Dashboard</a>
                             </li>
                         </ul>
                 </div>
@@ -57,7 +57,7 @@
         <br />
         
         {{#listing}}
-        <div class="container-fluid d-flex my-4">
+        <div class="container-fluid d-flex my-4 mx-auto">
             <div class="row">
                 <div class="col-md-6 d-flex align-items-center justify-content-center flex-column col-sm-12">
                     <img src="/uploads/{{image}}" class="details-product-image"/>
@@ -70,7 +70,20 @@
                     <p>Seller: 
                     <a href="/user/profile/{{user.username}}/{{user.id}}">{{user.username}}</a>
                     </p>
-                    <button class="btn btn-warning btn-lg" >Add to Cart</button>
+                    <div class="row">
+                        <div class="container-fluid d-flex hstack gap-3">
+                            <button class="btn btn-warning btn-lg" >Add to Cart</button>
+                            <form method="POST" action="/products/detail/{{id}}/list">
+                                <input type="hidden" value="{{title}}" name="saveTitle">
+                                <input type="hidden" value="{{description}}" name="saveDescription">
+                                <input type="hidden" value="{{price}}" name="savePrice">
+                                <input type="hidden" value="{{category}}" name="saveCategory">
+                                <input type="hidden" value="{{image}}" name="saveImg">
+                                <button class="btn btn-warning btn-lg">Add to List</button>
+                            </form>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>

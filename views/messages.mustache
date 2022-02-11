@@ -7,7 +7,7 @@
     </head>
     
     <body>
-        <!-- Start of Nav Bar -->
+    <!-- Start of Nav Bar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light min-vw-100">
             <div class="container-fluid">
                 <a class="navbar-brand mx-auto ps-5 fw-bolder" href="/">
@@ -54,52 +54,29 @@
             </div>
         </nav>
         <!-- End of Nav Bar -->
-
-        <div class="container-fluid d-flex justify-content-center my-4">
-            <div class="dropdown mx-4">
-                <button class="dropbtn">Sort By ▼</button>
-                <div class="dropdown-content">
-                <a href="/products/category/{{category}}/price-aesc">Price: Low to High</a>
-                <a href="/products/category/{{category}}/price-desc">Price: High to Low</a>
-                <a href="/products/category/{{category}}/rating">Top Rated</a>
+        <br />
+        <div class="container-fluid min-vh-100">
+            {{#messages}}
+            <div class="card m-3">
+                <div class="card-header">
+                    Message From: 
+                    <a href="/user/profile/{{sentmessages.id}}">{{sentmessages.username}}</a>
+                </div>
+                <div class="card-body"> 
+                    <blockquote class="blockquote mb-0">
+                    <p>{{body}}</p>
+                    </blockquote>
+                    <form method="POST" action="/user/dashboard/messages/delete/{{id}}">
+                        <button>Delete</button>
+                    </form>
                 </div>
             </div>
-
-            <div class="dropdown mx-4">
-                <button class="dropbtn">Filter By ▼</button>
-                <div class="dropdown-content">
-                    <a href="/products/view-all">View All</a>
-                    <a href="/products/category/cameras">Digital Cameras</a>
-                    <a href="/products/category/lenses">Lenses</a>
-                    <a href="/products/category/drones">Drones & Aerial Imaging</a>
-                    <a href="/products/category/lighting">Lighting Equipment</a>
-                    <a href="/products/category/accessories">Accessories</a>
-                    <a href="/products/category/books">Books & Tutorials</a>
-                </div>
-            </div>
+            {{/messages}}
+            {{^messages}}
+                "You have no messages"
+            {{/messages}}
         </div>
 
-        <div class="container-fluid vw-100 min-vh-100 px-5">
-            <div class="row">           
-            {{#products}}               
-                <div class="col-lg-3 col-md-6 col-sm-10" >
-                    <div class="col d-flex align-items-center justify-content-center">
-                        <div class="card mb-3" style="width: 18rem;">
-                            <a href="/products/detail/{{id}}" >
-                                <img src="/uploads/{{image}}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{title}}</h5>
-                                    <p class="card-text">{{description}}</p>
-                                    <p class="card-text">Rating: {{avg_rating}}/5 ({{reviewAmt}})</p>
-                                    <p class="card-text">${{price}}</p>
-                                </div>
-                            </a> 
-                        </div>
-                    </div>
-                </div>
-            {{/products}}        
-            </div>
-        </div>
         <!-- Start of All Footer -->
         <div class="container-fluid my-0 mx-0 py-0 px-0">
             <!-- Start of Blue Footer -->
@@ -111,7 +88,7 @@
                         <p>Get in touch with our latest promotions and events</p>
                         <form>
                             <div class="form-group d-flex">
-                                <input type="email" class="form-control" id="subEmail" placeholder="Email" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" id="subEmail" value="Email" aria-describedby="emailHelp">
                                 <button class="subscribeBtn">Subscribe</button>
                             </div>
                         </form>

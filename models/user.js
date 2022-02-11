@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       models.User.hasMany(models.Product, {as: 'listings', foreignKey: 'user_id'})
       models.User.hasMany(models.SellerReview, {as: 'sellerreviews', foreignKey: 'seller_id'})
+      models.User.hasMany(models.Message, {as: 'recievedmessages', foreignKey: 'seller_id'})
+      models.User.hasMany(models.SavedItem, {as: 'wishlist', foreignKey: 'user_id'})
     }
   }
   User.init({

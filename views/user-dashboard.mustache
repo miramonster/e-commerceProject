@@ -27,7 +27,7 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mx-auto pe-4">
+                        <ul class="navbar-nav mx-auto">
                             <li class="nav-item mx-5">
                             <a class="nav-link active fw-bold" aria-current="page" href="/">Home</a>
                             </li>
@@ -46,7 +46,7 @@
                                     <li><a class="dropdown-item" href="/products/category/books">Books & Tutorials</a></li>
                                 </ul>
                             <li class="nav-item mx-5">
-                            <a class="nav-link fw-bold" href="/user/dashboard">Profile</a>
+                            <a class="nav-link fw-bold" href="/user/dashboard">Dashboard</a>
                             </li>
                         </ul>
                 </div>
@@ -54,35 +54,28 @@
         </nav>
         <!-- End of Nav Bar -->
 
-        <h1>User Dashboard</h1>
+        <h1 class="text-center mt-5">User Dashboard</h1>
 
         <br />
 
         <div class="container-fluid vw-100 min-vh-100 px-5">
-            <div class="row">                   
-                <div class="col-lg-3 col-md-6 col-sm-10 mb-2" >
-                    <div class="col d-flex align-items-center justify-content-center">
-                        <a href="/user/dashboard/add-listing">
-                            <button type="button" class="btn btn-warning btn-lg">Add a Listing</button>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-10 mb-2" >
-                    <div class="col d-flex align-items-center justify-content-center">
-                        <a href="/user/dashboard/reviews">
-                            <button type="button" class="btn btn-warning btn-lg">View Your Reviews</button>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-10 mb-2" >
-                    <div class="col d-flex align-items-center justify-content-center">
-                        <a href="/user/dashboard/add-listing">
-                            <button type="button" class="btn btn-warning btn-lg">View Your Messages</button>
-                        </a>
-                    </div>
-                </div>      
+            <div class="d-flex justify-content-center flex-wrap">       
+                <a href="/user/dashboard/add-listing">
+                    <button type="button" class="btn btn-warning btn-lg mx-3 mb-3">Add a Listing</button>
+                </a>
+                <a href="/user/dashboard/reviews">
+                    <button type="button" class="btn btn-warning btn-lg mx-3 mb-3">View Reviews</button>
+                </a>
+                <a href="/user/dashboard/messages">
+                    <button type="button" class="btn btn-warning btn-lg mx-3 mb-3">View Messages</button>
+                </a>
+                <a href="/user/profile/{{username}}/{{userId}}">
+                    <button type="button" class="btn btn-warning btn-lg mx-3 mb-3">View Profile</button>
+                </a>
             </div>
 
+            <br />
+            <br />
             <br />
             
 
@@ -99,7 +92,7 @@
                                     <a href="/products/detail/{{id}}">
                                         <h5 class="userCardFont card-title">{{title}}</h5>
                                         <p class="userCardFont card-text">Rating: {{avg_rating}}/5 ({{reviewAmt}})</p>
-                                        <p class="userCardFont card-text">${{price}}/</p>
+                                        <p class="userCardFont card-text">${{price}}</p>
                                     </a>
                                     <br /> 
                                     <div class="row">

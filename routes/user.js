@@ -60,6 +60,7 @@ router.get('/listing/edit/:listingId', (req, res) => {
         res.render('edit-listing', {oneListing: listing, log:"Logout"})
     })
 })
+
 // Render Seller's profile page - Profile page display Seller's user-reviews and listings
 router.get('/profile/:username/:userId', (req, res) => {
     const userId = parseInt(req.params.userId)
@@ -114,7 +115,6 @@ router.get('/profile/:username/:userId', (req, res) => {
             const reviews = listingReviews.dataValues.reviews
             listingReviews.dataValues.avg_rating = calculateAvgRating(reviews).toFixed(2)
             listingReviews.dataValues.review_amt = reviews.length
-            console.log(reviews)
             return listingReviews.dataValues
         })
         if (req.session.user) {
@@ -152,6 +152,7 @@ router.get('/dashboard/add-listing', (req,res) => {
 // Rendering Dashboard mustache
 router.get('/dashboard', authenticateMiddleware, (req, res) => {
     const userId = req.session.userId
+    const username = req.session.username
     models.Product.findAll({
         where: {
             user_id: userId
@@ -178,9 +179,7 @@ router.get('/dashboard', authenticateMiddleware, (req, res) => {
             
         })
 
-        console.log(listings)
-
-        res.render('user-dashboard',{userListings:editedListings, log:"Logout"})
+        res.render('user-dashboard',{userListings:editedListings, log:"Logout", userId:userId, username:username})
     
     })
 })
@@ -195,13 +194,25 @@ router.get('/dashboard/reviews', authenticateMiddleware, (req, res) => {
         include: [
             {
                 model: models.User,
-                as: "reviewer"
-            }
+                as: "reviewer"   
+            },
+
         ]
 
     })
     .then((review) => {
         res.render('reviews',{userReviews:review, log:"Logout"})
+    })
+})
+
+router.post("/dashboard/reviews/delete/:reviewId", (req, res) => {
+    const reviewId = req.params.reviewId
+    models.Review.destroy({
+        where: {
+            id : reviewId
+        }
+    }).then(() => {
+        res.redirect('/user/dashboard/reviews')
     })
 })
 
@@ -290,6 +301,52 @@ router.post('/listing/delete/:listingId', (req, res) => {
     })
 })
 
+// Sending a Message to Merchant
+router.post('/profile/:username/:userId/message', (req, res) =>{
+    const senderId = req.session.userId
+    const recieverId = req.params.userId
+    const username = req.params.username
+    const body = req.body.bodyText
+    const message = models.Message.build({
+        body: body,
+        user_id: senderId,
+        seller_id: recieverId,
+        
+    })
+    message.save().then(() => {
+        res.redirect(`/user/profile/${username}/${recieverId}`, {sent:'Message Sent!'})
+    })
+})
 
+router.get('/dashboard/messages', (req, res) => {
+    const userId = req.session.userId
+    models.Message.findAll({
+        where:[{
+            seller_id:  userId,
+        }],
+        include:[{
+            model:models.User,
+            as:"sentmessages"
+        }]
+    })
+    .then((messages) => {
+        const message = messages.map((message) => {
+            return message.dataValues
+        })
+
+        res.render('messages', {messages: message, log: "Logout"})
+    })
+})
+
+router.post('/dashboard/messages/delete/:messageId', (req, res) => {
+    const messageId = req.params.messageId
+    models.Message.destroy({
+        where: {
+            id : messageId
+        }
+    }).then(() => {
+        res.redirect('/user/dashboard/messages')
+    })
+})
 
 module.exports = router
