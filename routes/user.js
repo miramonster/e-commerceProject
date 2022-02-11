@@ -95,6 +95,10 @@ router.get('/profile/:username/:userId', (req, res) => {
     })
     .then((user) => {
         // Getting Seller Reviews + Rating
+        if (!user) {
+            res.send("User does not have any listings")
+            return
+        } 
         const reviews = user.dataValues.sellerreviews
         const listings = user.dataValues.listings
         user.dataValues.avgRating = calculateAvgRating(reviews).toFixed(2)
@@ -117,15 +121,17 @@ router.get('/profile/:username/:userId', (req, res) => {
             listingReviews.dataValues.review_amt = reviews.length
             return listingReviews.dataValues
         })
+
+    
         if (req.session.user) {
             res.render('profile', 
-            {   
+                {   
                 reviews:reviews, 
                 listings:editedListings, 
-                    avgRating:avgRating, 
-                    reviewAmt:reviewAmt,
-                    user: seller,
-                    log:"Logout"
+                avgRating:avgRating, 
+                reviewAmt:reviewAmt,
+                user: seller,
+                log:"Logout",
                 }
                 )
             } else {
